@@ -13,7 +13,10 @@ pytest -q
 streamlit run app.py
 ```
 
-> **Note:** `train.py` requires PyTorch and downloads the NEU-DET dataset on first run. For a quick demo, the app uses synthetic data by default.
+> **Note:** `train.py` requires PyTorch. The real NEU-DET dataset is **not**
+> auto-downloaded — place the six class folders (`RS/`, `Pa/`, `Cr/`, `PS/`,
+> `In/`, `Sc/`) under `data/raw/` to train on it. When the folder is absent the
+> code transparently falls back to synthetic images for a quick demo.
 
 ## Training & explainability
 

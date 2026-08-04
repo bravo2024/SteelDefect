@@ -324,7 +324,10 @@ with tab_bench:
         st.subheader("Export to ONNX")
         if st.button("Export ONNX"):
             from src.model import export_onnx
-            export_onnx(benchmarks["ResNet18"]["model"] if "ResNet18" in benchmarks else resnet, "models/steel_defect.onnx")
+            # benchmark_model() returns metrics, not the model object — export the
+            # module we actually benchmarked.
+            export_target = resnet if "ResNet18" in benchmarks else custom
+            export_onnx(export_target, "models/steel_defect.onnx")
             st.success("Exported to models/steel_defect.onnx")
     else:
         st.info("Click 'Run Benchmark' to compare models.")
